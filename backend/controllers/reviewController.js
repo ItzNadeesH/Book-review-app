@@ -1,12 +1,14 @@
-const mongoose = require("mongoose");
 const Review = require("../models/review");
 
 const getReviews = async (req, res) => {
   try {
-    const reviews = await Review.find();
+    const { title } = req.body;
 
-    if (reviews.length === 0)
-      return res.status(200).json({ msg: "No reviews found" });
+    if (!title) {
+      return res.status(400).json({ msg: "Title is required" });
+    }
+
+    const reviews = await Review.find({ bookTitle: title });
 
     res.status(200).json(reviews);
   } catch (error) {
