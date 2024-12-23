@@ -8,7 +8,9 @@ const getReviews = async (req, res) => {
       return res.status(400).json({ msg: "Title is required" });
     }
 
-    const reviews = await Review.find({ bookTitle: title });
+    const reviews = await Review.find({ bookTitle: title }).sort({
+      updatedAt: -1,
+    });
 
     res.status(200).json(reviews);
   } catch (error) {

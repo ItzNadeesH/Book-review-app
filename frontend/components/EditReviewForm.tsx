@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -51,11 +53,11 @@ const EditReviewForm = ({ reviewId, cmt, rate, onUpdate }: Props) => {
   };
 
   return (
-    <Dialog open={isOpen}>
+    <Dialog>
       <DialogTrigger asChild>
         <Button
           onClick={() => setIsOpen(true)}
-          className="border-0 bg-white shadow-0 hover:bg-white font-normal"
+          className="border-0 shadow-none bg-white shadow-0 hover:bg-white font-normal"
           variant="outline"
         >
           Edit
@@ -72,7 +74,7 @@ const EditReviewForm = ({ reviewId, cmt, rate, onUpdate }: Props) => {
           <div className="flex items-center">
             <Rating rating={rating} setRating={setRating} />
           </div>
-          <div className="col-span-full">
+          <div className="col-span-full mb-4">
             <label
               htmlFor="comment"
               className="mt-2 block text-sm/6 font-medium text-gray-900"
@@ -89,12 +91,12 @@ const EditReviewForm = ({ reviewId, cmt, rate, onUpdate }: Props) => {
               ></textarea>
             </div>
           </div>
-          <button
-            className="mt-2 bg-indigo-600 text-white py-1.5 px-4 rounded-md"
-            type="submit"
-          >
-            Submit
-          </button>
+
+          <DialogClose asChild>
+            <Button type="submit" variant="secondary">
+              Submit
+            </Button>
+          </DialogClose>
         </form>
       </DialogContent>
     </Dialog>

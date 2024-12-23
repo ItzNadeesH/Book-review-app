@@ -169,6 +169,12 @@ const Reviews = () => {
                         await axios.delete(
                           "http://localhost:5000/api/reviews/" + item._id
                         );
+
+                        setReviews((prevReviews) =>
+                          prevReviews.filter(
+                            (review) => review._id !== item._id
+                          )
+                        );
                       }}
                       className="bg-red-700 hover:bg-red-900"
                     >
